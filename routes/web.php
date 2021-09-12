@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/',[App\Http\Controllers\IndexController::class,'index'])->name('index');
 
     Route::get('seller', [\App\Http\Controllers\seller\SellerController::class, 'index'])->name('seller');
+    Route::get('seller_request', [\App\Http\Controllers\seller\SellerController::class, 'sellerRequest'])->name('seller_request');
 
 
 });

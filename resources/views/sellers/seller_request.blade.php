@@ -6,12 +6,7 @@
             <div class="aiz-titlebar text-left mt-2 mb-3">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <h1 class="h3">All Sellers</h1>
-                    </div>
-                    <div class="col-md-6 text-md-right">
-                        <a href="#" class="btn btn-circle btn-info">
-                            <span>Add New Seller</span>
-                        </a>
+                        <h1 class="h3">All Sellers Request</h1>
                     </div>
                 </div>
             </div>
@@ -20,7 +15,7 @@
                 <form class="" id="sort_sellers" action="" method="GET">
                     <div class="card-header row gutters-5">
                         <div class="col">
-                            <h5 class="mb-md-0 h6">Sellers</h5>
+                            <h5 class="mb-md-0 h6">Sellers Request</h5>
                         </div>
 
 {{--                        <div class="dropdown mb-2 mb-md-0">--}}

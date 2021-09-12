@@ -269,6 +269,11 @@
                                     </a>
                                 </li>
                                 <li class="aiz-side-nav-item">
+                                    <a href="{{ route('seller_request') }}" class="aiz-side-nav-link ">
+                                        <span class="aiz-side-nav-text">Seller Request</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
                                     <a href="http://127.0.0.1/ecommerce/admin/seller/payments"
                                        class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">Payouts</span>

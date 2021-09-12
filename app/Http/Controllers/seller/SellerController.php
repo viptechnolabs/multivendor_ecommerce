@@ -12,4 +12,9 @@ class SellerController extends Controller
     {
         return view('sellers.index');
     }
+
+    public function sellerRequest()
+    {
+        return view('sellers.seller_request');
+    }
 }
