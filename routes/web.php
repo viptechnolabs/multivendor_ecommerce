@@ -20,11 +20,25 @@ Route::get('login',[App\Http\Controllers\Auth\LoginController::class,'login'])->
 Route::post('do_login',[App\Http\Controllers\Auth\LoginController::class,'doLogin'])->name('do_login');
 Route::get('logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 
+
+Route::post('/aiz-uploader', [\App\Http\Controllers\AizUploadController::class, 'show_uploader']);
+Route::post('/aiz-uploader/upload', [\App\Http\Controllers\AizUploadController::class, 'upload']);
+Route::get('/aiz-uploader/get_uploaded_files', [\App\Http\Controllers\AizUploadController::class, 'get_uploaded_files']);
+Route::post('/aiz-uploader/get_file_by_ids', [\App\Http\Controllers\AizUploadController::class, 'get_preview_files']);
+Route::get('/aiz-uploader/download/{id}', [\App\Http\Controllers\AizUploadController::class, 'attachment_download'])->name('download_attachment');
+
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/',[App\Http\Controllers\IndexController::class,'index'])->name('index');
 
     Route::get('seller', [\App\Http\Controllers\seller\SellerController::class, 'index'])->name('seller');
     Route::get('seller_request', [\App\Http\Controllers\seller\SellerController::class, 'sellerRequest'])->name('seller_request');
+
+
+    Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category');
+    Route::get('add_category', [\App\Http\Controllers\CategoryController::class, 'addCategory'])->name('add_category');
+    Route::post('submit_category', [\App\Http\Controllers\CategoryController::class, 'submitCategory'])->name('submit_category');
 
 
 });

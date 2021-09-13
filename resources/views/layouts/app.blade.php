@@ -129,6 +129,28 @@
 
                         <!-- POS Addon-->
 
+                        <!-- Category -->
+                        <li class="aiz-side-nav-item">
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="las la-shopping-cart aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text">Category</span>
+                                <span class="aiz-side-nav-arrow"></span>
+                            </a>
+                            <!--Submenu-->
+                            <ul class="aiz-side-nav-list level-2 mm-collapse">
+                                <li class="aiz-side-nav-item">
+                                    <a href="{{ route('add_category') }}" class="aiz-side-nav-link ">
+                                        <span class="aiz-side-nav-text">Add Category</span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="http://127.0.0.1/ecommerce/admin/categories" class="aiz-side-nav-link ">
+                                        <span class="aiz-side-nav-text">All Category</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <!-- Product -->
                         <li class="aiz-side-nav-item">
                             <a href="#" class="aiz-side-nav-link">
@@ -174,11 +196,6 @@
                                 <li class="aiz-side-nav-item">
                                     <a href="http://127.0.0.1/ecommerce/product-bulk-export" class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">Bulk Export</span>
-                                    </a>
-                                </li>
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/categories" class="aiz-side-nav-link ">
-                                        <span class="aiz-side-nav-text">Category</span>
                                     </a>
                                 </li>
                                 <li class="aiz-side-nav-item">
