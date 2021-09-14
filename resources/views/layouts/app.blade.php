@@ -144,7 +144,7 @@
                                     </a>
                                 </li>
                                 <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/categories" class="aiz-side-nav-link ">
+                                    <a href="{{ route('category') }}" class="aiz-side-nav-link ">
                                         <span class="aiz-side-nav-text">All Category</span>
                                     </a>
                                 </li>
@@ -879,8 +879,8 @@
                                      onerror="this.onerror=null;this.src='{{ asset('assets/img/avatar-place.png') }}';">
                             </span>
                             <span class="d-none d-md-block">
-                                <span class="d-block fw-500">admin</span>
-                                <span class="d-block small opacity-60">admin</span>
+                                <span class="d-block fw-500">{{auth()->user()->name}}</span>
+                                <span class="d-block small opacity-60">{{ auth()->user()->user_type }}</span>
                             </span>
                         </span>
                             </a>
