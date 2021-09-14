@@ -1,4 +1,7 @@
-@php $type = Session::get('userType')  @endphp
+@php
+    $type = Session::get('userType');
+    $active = Auth::user()->status;
+@endphp
     <!doctype html>
 <html lang="en">
 <head>
@@ -117,7 +120,7 @@
                 <ul class="aiz-side-nav-list" id="search-menu">
 
                 </ul>
-                @if(Auth::user()->user_type == 'admin')
+                @if(Auth::user()->user_type === 'admin')
                     <ul class="aiz-side-nav-list metismenu" id="main-menu" data-toggle="aiz-side-menu">
 
                         <li class="aiz-side-nav-item mm-active">
@@ -449,17 +452,6 @@
                             </ul>
                         </li>
 
-                        <!-- Affiliate Addon -->
-
-                        <!-- Offline Payment Addon-->
-
-                        <!-- Paytm Addon -->
-
-                        <!-- Club Point Addon-->
-
-                        <!--OTP addon -->
-
-
                         <!-- Website Setup -->
                         <li class="aiz-side-nav-item">
                             <a href="#" class="aiz-side-nav-link">
@@ -671,7 +663,7 @@
                         </li>
                     </ul><!-- .aiz-side-nav -->
                     @endif
-                @if(Auth::user()->user_type == 'seller')
+                @if(Auth::user()->user_type === 'seller')
                     <ul class="aiz-side-nav-list metismenu" id="main-menu" data-toggle="aiz-side-menu">
 
                         <li class="aiz-side-nav-item mm-active">
@@ -681,7 +673,7 @@
                             </a>
                         </li>
                     @php
-                        $active = Auth::user()->banned
+
                     @endphp
                     @if($active !== 0)
                         <!-- Product -->
@@ -906,6 +898,7 @@
     </div><!-- .aiz-content-wrapper -->
 </div><!-- .aiz-main-wrapper -->
 
+@yield('modal')
 
 @include('sweet::alert')
 <script src="{{ asset('assets/js/vendors.js') }}"></script>

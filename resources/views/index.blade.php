@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
-    @if(Auth::user()->banned == 0)
+    @if(Auth::user()->status === 0)
         <div class="px-15px px-lg-25px">
             <div class="alert alert-danger d-flex align-items-center">
-                Your seller account request has <bee></bee>n pending, <b class="ml-1">Please Wait until Admin Can Approve. </b>
+                Your seller account request has been pending, <b class="ml-1">Please Wait until Admin Can Approve. </b>
             </div>
         </div>
     @endif
-    @if(Auth::user()->banned == 1)
+    @if(Auth::user()->status === 1)
         <div class="px-15px px-lg-25px">
             <div class="row gutters-10">
                 <div class="col-lg-6">

@@ -39,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category');
     Route::get('add_category', [\App\Http\Controllers\CategoryController::class, 'addCategory'])->name('add_category');
     Route::post('submit_category', [\App\Http\Controllers\CategoryController::class, 'submitCategory'])->name('submit_category');
+    Route::post('category_featured', [\App\Http\Controllers\CategoryController::class, 'updateFeatured'])->name('category_featured');
+    Route::get('category_destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category_destroy');
+    Route::get('category_edit/{id}', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('category_edit');
+    Route::post('update_category/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('update_category');
 
 
 });

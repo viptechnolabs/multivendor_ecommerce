@@ -6,10 +6,10 @@
     <div class="col-lg-8 mx-auto">
         <div class="card">
             <div class="card-header">
-                <h5 class="mb-0 h6">Category Information</h5>
+                <h5 class="mb-0 h6">Add Category</h5>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{ route('submit_category') }}" method="POST" enctype="multipart/form-data">
                 	@csrf
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">Name</label>
@@ -22,8 +22,8 @@
                         <div class="col-md-9">
                             <select class="select2 form-control aiz-selectpicker" name="parent_id" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                 <option value="0">No Parent</option>
-                                @foreach(App\Models\Category::CATEGORY as $key => $value )
-                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @foreach($categories as $key => $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
