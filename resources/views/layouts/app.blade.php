@@ -117,7 +117,7 @@
                 <ul class="aiz-side-nav-list" id="search-menu">
 
                 </ul>
-                @if($type == 'admin')
+                @if(Auth::user()->user_type == 'admin')
                     <ul class="aiz-side-nav-list metismenu" id="main-menu" data-toggle="aiz-side-menu">
 
                         <li class="aiz-side-nav-item mm-active">
@@ -670,132 +670,138 @@
                             </a>
                         </li>
                     </ul><!-- .aiz-side-nav -->
-                @elseif($type == 'seller')
+                    @endif
+                @if(Auth::user()->user_type == 'seller')
                     <ul class="aiz-side-nav-list metismenu" id="main-menu" data-toggle="aiz-side-menu">
 
                         <li class="aiz-side-nav-item mm-active">
                             <a href="#" class="aiz-side-nav-link active" aria-expanded="true">
                                 <i class="las la-home aiz-side-nav-icon"></i>
-                                <span class="aiz-side-nav-text">Dashboard</span>
+                                <span class="aiz-side-nav-text">Dashboard </span>
                             </a>
                         </li>
-
-
+                    @php
+                        $active = Auth::user()->banned
+                    @endphp
+                    @if($active !== 0)
                         <!-- Product -->
-                        <li class="aiz-side-nav-item">
-                            <a href="#" class="aiz-side-nav-link">
-                                <i class="las la-shopping-cart aiz-side-nav-icon"></i>
-                                <span class="aiz-side-nav-text">Products</span>
-                                <span class="aiz-side-nav-arrow"></span>
-                            </a>
-                            <!--Submenu-->
-                            <ul class="aiz-side-nav-list level-2 mm-collapse">
-                                <li class="aiz-side-nav-item">
-                                    <a class="aiz-side-nav-link" href="3">
-                                        <span class="aiz-side-nav-text">Add New product</span>
-                                    </a>
-                                </li>
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/products/all" class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text">All Products</span>
-                                    </a>
-                                </li>
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/product-bulk-upload/index"
-                                       class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text">Bulk Import</span>
-                                    </a>
-                                </li>
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/reviews" class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text">Product Reviews</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="#" class="aiz-side-nav-link">
+                                    <i class="las la-shopping-cart aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Products</span>
+                                    <span class="aiz-side-nav-arrow"></span>
+                                </a>
+                                <!--Submenu-->
+                                <ul class="aiz-side-nav-list level-2 mm-collapse">
+                                    <li class="aiz-side-nav-item">
+                                        <a class="aiz-side-nav-link" href="3">
+                                            <span class="aiz-side-nav-text">Add New product</span>
+                                        </a>
+                                    </li>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="http://127.0.0.1/ecommerce/admin/products/all"
+                                           class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">All Products</span>
+                                        </a>
+                                    </li>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="http://127.0.0.1/ecommerce/product-bulk-upload/index"
+                                           class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Bulk Import</span>
+                                        </a>
+                                    </li>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="http://127.0.0.1/ecommerce/reviews" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Product Reviews</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <!-- Sale -->
-                        <li class="aiz-side-nav-item">
-                            <a href="#" class="aiz-side-nav-link">
-                                <i class="las la-money-bill aiz-side-nav-icon"></i>
-                                <span class="aiz-side-nav-text">Sales</span>
-                                <span class="aiz-side-nav-arrow"></span>
-                            </a>
-                            <!--Submenu-->
-                            <ul class="aiz-side-nav-list level-2 mm-collapse">
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/all_orders" class="aiz-side-nav-link ">
-                                        <span class="aiz-side-nav-text">All Orders</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Customers -->
-                        <li class="aiz-side-nav-item">
-                            <a href="#" class="aiz-side-nav-link">
-                                <i class="las la-user-friends aiz-side-nav-icon"></i>
-                                <span class="aiz-side-nav-text">Customers</span>
-                                <span class="aiz-side-nav-arrow"></span>
-                            </a>
-                            <ul class="aiz-side-nav-list level-2 mm-collapse">
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/customers" class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text">Customer list</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Sellers -->
+                            <!-- Sale -->
+                            <li class="aiz-side-nav-item">
+                                <a href="#" class="aiz-side-nav-link">
+                                    <i class="las la-money-bill aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Sales</span>
+                                    <span class="aiz-side-nav-arrow"></span>
+                                </a>
+                                <!--Submenu-->
+                                <ul class="aiz-side-nav-list level-2 mm-collapse">
+                                    <li class="aiz-side-nav-item">
+                                        <a href="http://127.0.0.1/ecommerce/admin/all_orders"
+                                           class="aiz-side-nav-link ">
+                                            <span class="aiz-side-nav-text">All Orders</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Customers -->
+                            <li class="aiz-side-nav-item">
+                                <a href="#" class="aiz-side-nav-link">
+                                    <i class="las la-user-friends aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Customers</span>
+                                    <span class="aiz-side-nav-arrow"></span>
+                                </a>
+                                <ul class="aiz-side-nav-list level-2 mm-collapse">
+                                    <li class="aiz-side-nav-item">
+                                        <a href="http://127.0.0.1/ecommerce/admin/customers" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Customer list</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Sellers -->
 
-                        <!-- Reports -->
-                        <li class="aiz-side-nav-item">
-                            <a href="#" class="aiz-side-nav-link">
-                                <i class="las la-file-alt aiz-side-nav-icon"></i>
-                                <span class="aiz-side-nav-text">Reports</span>
-                                <span class="aiz-side-nav-arrow"></span>
-                            </a>
-                            <ul class="aiz-side-nav-list level-2 mm-collapse">
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/stock_report" class="aiz-side-nav-link ">
-                                        <span class="aiz-side-nav-text">Products Stock</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <!-- Reports -->
+                            <li class="aiz-side-nav-item">
+                                <a href="#" class="aiz-side-nav-link">
+                                    <i class="las la-file-alt aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Reports</span>
+                                    <span class="aiz-side-nav-arrow"></span>
+                                </a>
+                                <ul class="aiz-side-nav-list level-2 mm-collapse">
+                                    <li class="aiz-side-nav-item">
+                                        <a href="http://127.0.0.1/ecommerce/admin/stock_report"
+                                           class="aiz-side-nav-link ">
+                                            <span class="aiz-side-nav-text">Products Stock</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <!-- marketing -->
-                        <li class="aiz-side-nav-item">
-                            <a href="#" class="aiz-side-nav-link">
-                                <i class="las la-bullhorn aiz-side-nav-icon"></i>
-                                <span class="aiz-side-nav-text">Marketing</span>
-                                <span class="aiz-side-nav-arrow"></span>
-                            </a>
-                            <ul class="aiz-side-nav-list level-2 mm-collapse">
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/newsletter" class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text">Prime Product</span>
-                                    </a>
-                                </li>
-                                <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/subscribers" class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text">Subscribers</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="http://127.0.0.1/ecommerce/admin/addons" class="aiz-side-nav-link ">
-                                <i class="las la-history aiz-side-nav-icon"></i>
-                                <span class="aiz-side-nav-text">Payment history</span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="http://127.0.0.1/ecommerce/admin/addons" class="aiz-side-nav-link ">
-                                <i class="las la-money-bill-wave-alt aiz-side-nav-icon"></i>
-                                <span class="aiz-side-nav-text">Money Withdraw</span>
-                            </a>
-                        </li>
-
+                            <!-- marketing -->
+                            <li class="aiz-side-nav-item">
+                                <a href="#" class="aiz-side-nav-link">
+                                    <i class="las la-bullhorn aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Marketing</span>
+                                    <span class="aiz-side-nav-arrow"></span>
+                                </a>
+                                <ul class="aiz-side-nav-list level-2 mm-collapse">
+                                    <li class="aiz-side-nav-item">
+                                        <a href="http://127.0.0.1/ecommerce/admin/newsletter" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Prime Product</span>
+                                        </a>
+                                    </li>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="http://127.0.0.1/ecommerce/subscribers" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text">Subscribers</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="http://127.0.0.1/ecommerce/admin/addons" class="aiz-side-nav-link ">
+                                    <i class="las la-history aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Payment history</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="http://127.0.0.1/ecommerce/admin/addons" class="aiz-side-nav-link ">
+                                    <i class="las la-money-bill-wave-alt aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Money Withdraw</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 @endif
             </div><!-- .aiz-side-nav-wrap -->
@@ -894,7 +900,9 @@
                 </div>
             </div>
         </div><!-- .aiz-topbar -->
-        @yield('content')
+        <div class="aiz-main-content">
+            @yield('content')
+        </div>
     </div><!-- .aiz-content-wrapper -->
 </div><!-- .aiz-main-wrapper -->
 

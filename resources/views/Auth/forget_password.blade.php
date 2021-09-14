@@ -26,7 +26,7 @@
                             </div>
                         </form>
                         <div class="mt-3">
-                            <a href="{{route('login_page')}}" class="text-reset opacity-60">Back to Login</a>
+                            <a href="{{route('login')}}" class="text-reset opacity-60">Back to Login</a>
                         </div>
                     </div>
                 </div>

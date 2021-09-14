@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Seller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -52,6 +56,28 @@ class LoginController extends Controller
         return redirect()
             ->route('login')
             ->with('message', 'Logout successfully...!');
+    }
+
+    public function register(Request $request)
+    {
+        #param
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $address = $request->input('address');
+
+        $user = new User;
+        $user->user_type = 'seller';
+        $user->name = $name;
+        $user->email = $email;
+        $user->password = Hash::make($password);
+        $user->address = $address;
+        $user->save();
+
+        $seller = new Seller;
+        $seller->user_id = $user->id;
+        $seller->save();
+        return redirect()->route('login');
     }
 
     public function forgetPassword()
