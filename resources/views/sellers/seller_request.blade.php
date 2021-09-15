@@ -59,64 +59,61 @@
                                 <th>Name</th>
                                 <th data-breakpoints="lg">Phone</th>
                                 <th data-breakpoints="lg">Email Address</th>
-                                <th data-breakpoints="lg">Verification Info</th>
+{{--                                <th data-breakpoints="lg">Verification Info</th>--}}
                                 <th data-breakpoints="lg">Approval</th>
-                                <th data-breakpoints="lg">Num. of Products</th>
-                                <th data-breakpoints="lg">Due to seller</th>
+{{--                                <th data-breakpoints="lg">Num. of Products</th>--}}
+{{--                                <th data-breakpoints="lg">Due to seller</th>--}}
                                 <th width="10%">Options</th>
                             </tr>
                             </thead>
                             <tbody>
-{{--                            @foreach($sellers as $key => $seller)--}}
-{{--                                @if($seller->user != null && $seller->user->shop != null)--}}
-{{--                                    <tr>--}}
+                            @foreach($sellers as $key => $seller)
+{{--                                @if($seller->user != null)--}}
+                                    <tr>
 {{--                                    <!--<td>{{ ($key+1) + ($sellers->currentPage() - 1)*$sellers->perPage() }}</td>-->--}}
-{{--                                        <td>--}}
-{{--                                            <div class="form-group">--}}
-{{--                                                <div class="aiz-checkbox-inline">--}}
-{{--                                                    <label class="aiz-checkbox">--}}
-{{--                                                        <input type="checkbox" class="check-one" name="id[]" value="{{$seller->id}}">--}}
-{{--                                                        <span class="aiz-square-check"></span>--}}
-{{--                                                    </label>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </td>--}}
-{{--                                        <td>@if($seller->user->banned == 1) <i class="fa fa-ban text-danger" aria-hidden="true"></i> @endif {{$seller->user->shop->name}}</td>--}}
-{{--                                        <td>{{$seller->user->phone}}</td>--}}
-{{--                                        <td>{{$seller->user->email}}</td>--}}
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="aiz-checkbox-inline">
+                                                    <label class="aiz-checkbox">
+                                                        <input type="checkbox" class="check-one" name="id[]" value="{{$seller->id}}">
+                                                        <span class="aiz-square-check"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td> {{$seller->user->name}}</td>
+                                        <td>{{$seller->user->phone}}</td>
+                                        <td>{{$seller->user->email}}</td>
 {{--                                        <td>--}}
 {{--                                            @if ($seller->verification_info != null)--}}
-{{--                                                <a href="{{ route('sellers.show_verification_request', $seller->id) }}">--}}
-{{--                                                    <span class="badge badge-inline badge-info">{{translate('Show')}}</span>--}}
+{{--                                                <a href="#">--}}
+{{--                                                    <span class="badge badge-inline badge-info">Show</span>--}}
 {{--                                                </a>--}}
 {{--                                            @endif--}}
 {{--                                        </td>--}}
+                                        <td>
+                                            <label class="aiz-switch aiz-switch-success mb-0">
+                                                <input onchange="update_approved(this)" value="{{ $seller->id }}" type="checkbox" <?php if($seller->verification_status == 1) echo "checked";?> >
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+{{--                                        <td>10</td>--}}
 {{--                                        <td>--}}
-{{--                                            <label class="aiz-switch aiz-switch-success mb-0">--}}
-{{--                                                <input onchange="update_approved(this)" value="{{ $seller->id }}" type="checkbox" <?php if($seller->verification_status == 1) echo "checked";?> >--}}
-{{--                                                <span class="slider round"></span>--}}
-{{--                                            </label>--}}
+{{--                                           Due to Admin--}}
+{{----}}
 {{--                                        </td>--}}
-{{--                                        <td>{{ \App\Product::where('user_id', $seller->user->id)->count() }}</td>--}}
-{{--                                        <td>--}}
-{{--                                            @if ($seller->admin_to_pay >= 0)--}}
-{{--                                                {{ single_price($seller->admin_to_pay) }}--}}
-{{--                                            @else--}}
-{{--                                                {{ single_price(abs($seller->admin_to_pay)) }} (Due to Admin)--}}
-{{--                                            @endif--}}
-{{--                                        </td>--}}
-{{--                                        <td>--}}
-{{--                                            <div class="dropdown">--}}
-{{--                                                <button type="button" class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">--}}
-{{--                                                    <i class="las la-ellipsis-v"></i>--}}
-{{--                                                </button>--}}
-{{--                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">--}}
-{{--                                                    <a href="#" onclick="show_seller_profile('{{$seller->id}}');"  class="dropdown-item">--}}
-{{--                                                        {{translate('Profile')}}--}}
-{{--                                                    </a>--}}
-{{--                                                    <a href="{{route('sellers.login', encrypt($seller->id))}}" class="dropdown-item">--}}
-{{--                                                        {{translate('Log in as this Seller')}}--}}
-{{--                                                    </a>--}}
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
+                                                    <i class="las la-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
+                                                    <a href="#" onclick="show_seller_profile('{{$seller->id}}');"  class="dropdown-item">
+                                                        Profile
+                                                    </a>
+                                                    <a href="" class="dropdown-item">
+                                                        Log in as this Seller
+                                                    </a>
 {{--                                                    <a href="#" onclick="show_seller_payment_modal('{{$seller->id}}');" class="dropdown-item">--}}
 {{--                                                        {{translate('Go to Payment')}}--}}
 {{--                                                    </a>--}}
@@ -140,16 +137,15 @@
 {{--                                                    <a href="#" class="dropdown-item confirm-delete" data-href="{{route('sellers.destroy', $seller->id)}}" class="">--}}
 {{--                                                        {{translate('Delete')}}--}}
 {{--                                                    </a>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                @endif--}}
-{{--                            @endforeach--}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <div class="aiz-pagination">
-{{--                            {{ $sellers->appends(request()->input())->links() }}--}}
+                            {{ $sellers->appends(request()->input())->links() }}
                         </div>
                     </div>
                     </from>

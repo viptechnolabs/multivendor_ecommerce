@@ -52,4 +52,4 @@ Route::post('/forget-password',[App\Http\Controllers\Auth\LoginController::class
 Route::get('/register',[App\Http\Controllers\Auth\LoginController::class,'register_page'])->name('register_page');
 Route::post('/register',[App\Http\Controllers\Auth\LoginController::class,'register'])->name('register');
 
-Route::get('/nav',[App\Http\Controllers\Auth\LoginController::class,'test'])->name('test');
+//Route::get('/nav',[App\Http\Controllers\Auth\LoginController::class,'test'])->name('test');

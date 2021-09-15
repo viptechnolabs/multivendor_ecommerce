@@ -675,7 +675,7 @@
                     @php
 
                     @endphp
-                    @if($active !== 0)
+                    @if(Auth::user()->status == 1)
                         <!-- Product -->
                             <li class="aiz-side-nav-item">
                                 <a href="#" class="aiz-side-nav-link">
