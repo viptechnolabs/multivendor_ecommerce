@@ -11,15 +11,13 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/Route::get('/reset', function () {
-    return view('Auth.reset');
+*/
+Route::view('/reset','Auth.reset');
+Route::middleware(['no-auth'])->group(function () {
+    Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+    Route::post('do_login', [App\Http\Controllers\Auth\LoginController::class, 'doLogin'])->name('do_login');
+    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
-
-
-Route::get('login',[App\Http\Controllers\Auth\LoginController::class,'login'])->name('login');
-Route::post('do_login',[App\Http\Controllers\Auth\LoginController::class,'doLogin'])->name('do_login');
-Route::get('logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
-
 
 Route::post('/aiz-uploader', [\App\Http\Controllers\AizUploadController::class, 'show_uploader']);
 Route::post('/aiz-uploader/upload', [\App\Http\Controllers\AizUploadController::class, 'upload']);
