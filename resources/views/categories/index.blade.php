@@ -132,7 +132,7 @@
                 });
             }
             @if (session()->has('message'))
-            AIZ.plugins.notify('danger', '{{ Session::get('message') }}');
+            AIZ.plugins.notify('success', '{{ Session::get('message') }}');
             @endif
         </script>
 @endsection

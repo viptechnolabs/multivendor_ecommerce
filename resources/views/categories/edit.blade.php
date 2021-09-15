@@ -23,8 +23,6 @@
                         <label class="col-md-3 col-form-label">Parent Category</label>
                         <div class="col-md-9">
                             <select class="select2 form-control aiz-selectpicker" name="parent_id" data-toggle="select2" data-placeholder="Choose ..."data-live-search="true" data-selected="{{ $category->parent_id }}">
-                                <option value="0">No Parent</option>
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @foreach($categories as $key => $category1)
                                     <option value="{{ $category1->id }}">{{ $category1->name }}</option>
                                 @endforeach

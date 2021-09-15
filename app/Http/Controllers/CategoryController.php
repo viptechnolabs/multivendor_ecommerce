@@ -115,10 +115,9 @@ class CategoryController extends Controller
     {
 
         $category = Category::findOrFail($id);
-        dd($category);
-        if($request->lang == env("DEFAULT_LANGUAGE")){
+
             $category->name = $request->name;
-        }
+
         if($request->order_level != null) {
             $category->order_level = $request->order_level;
         }
@@ -162,11 +161,11 @@ class CategoryController extends Controller
 
         $category->save();
 
-        $category_translation = CategoryTranslation::firstOrNew(['lang' => $request->lang, 'category_id' => $category->id]);
+        $category_translation = CategoryTranslation::firstOrNew(['lang' => 'English', 'category_id' => $category->id]);
         $category_translation->name = $request->name;
         $category_translation->save();
 
-        flash(translate('Category has been updated successfully'))->success();
-        return back();
+        session()->flash('message', 'Category has been updated successfully');
+        return redirect()->route('category');
     }
 }

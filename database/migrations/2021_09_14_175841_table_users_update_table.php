@@ -27,6 +27,7 @@ class TableUsersUpdateTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->string('status')->after('user_type')->default('0');
         });
     }
 }
