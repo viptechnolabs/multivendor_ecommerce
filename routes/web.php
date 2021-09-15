@@ -16,8 +16,8 @@ Route::view('/reset','Auth.reset');
 Route::middleware(['no-auth'])->group(function () {
     Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
     Route::post('do_login', [App\Http\Controllers\Auth\LoginController::class, 'doLogin'])->name('do_login');
-    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
+
 
 Route::post('/aiz-uploader', [\App\Http\Controllers\AizUploadController::class, 'show_uploader']);
 Route::post('/aiz-uploader/upload', [\App\Http\Controllers\AizUploadController::class, 'upload']);
@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('category_edit/{id}', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('category_edit');
     Route::post('update_category/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('update_category');
 
-
+    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
 Route::get('/forget-password',[App\Http\Controllers\Auth\LoginController::class,'forgetPassword'])->name('forgetPassword');
 Route::post('/forget-password',[App\Http\Controllers\Auth\LoginController::class,'resetPassword'])->name('resetPassword');
