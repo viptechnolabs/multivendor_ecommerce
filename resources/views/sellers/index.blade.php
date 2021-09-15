@@ -15,7 +15,7 @@
                 <form class="" id="sort_sellers" action="" method="GET">
                     <div class="card-header row gutters-5">
                         <div class="col">
-                            <h5 class="mb-md-0 h6">Sellers Request</h5>
+                            <h5 class="mb-md-0 h6">All Sellers</h5>
                         </div>
 
                         {{--                        <div class="dropdown mb-2 mb-md-0">--}}
@@ -46,16 +46,7 @@
                             <thead>
                             <tr>
                                 <!--<th data-breakpoints="lg">#</th>-->
-                                <th>
-                                    <div class="form-group">
-                                        <div class="aiz-checkbox-inline">
-                                            <label class="aiz-checkbox">
-                                                <input type="checkbox" class="check-all">
-                                                <span class="aiz-square-check"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </th>
+                                <th data-breakpoints="lg">#</th>
                                 <th>Name</th>
                                 <th data-breakpoints="lg">Phone</th>
                                 <th data-breakpoints="lg">Email Address</th>
@@ -70,16 +61,7 @@
                             @foreach($sellers as $key => $seller)
                                 @if($seller->user != null)
                                     <tr>
-                                        {{--                                    <!--<td>{{ ($key+1) + ($sellers->currentPage() - 1)*$sellers->perPage() }}</td>-->--}}
-                                        <td>
-                                            <div class="form-group">
-                                                <div class="aiz-checkbox-inline">
-                                                    <label class="aiz-checkbox">
-                                                        <input type="checkbox" class="check-one" name="id[]" value="{{$seller->id}}">
-                                                        <span class="aiz-square-check"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
+                                        <td>{{ $key + 1 }}</td>
                                         </td>
                                         <td> {{$seller->user->name}}</td>
                                         <td>{{$seller->user->phone}}</td>
