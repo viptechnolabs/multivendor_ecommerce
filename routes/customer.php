@@ -14,3 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/login',[\App\Http\Controllers\API\CustomerController::class,'login']);
+Route::post('/signup',[\App\Http\Controllers\API\CustomerController::class,'signup']);
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/logout',[\App\Http\Controllers\API\CustomerController::class,'logout']);
+});

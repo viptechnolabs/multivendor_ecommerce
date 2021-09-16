@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| DeliveryBoy Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
@@ -14,3 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/login',[\App\Http\Controllers\API\DeliveryBoyController::class,'login']);
+Route::post('/signup',[\App\Http\Controllers\API\DeliveryBoyController::class,'signup']);
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/test',[\App\Http\Controllers\API\DeliveryBoyController::class,'test']);
+    Route::post('/logout',[\App\Http\Controllers\API\DeliveryBoyController::class,'logout']);
+});
