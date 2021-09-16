@@ -29,11 +29,17 @@ class LoginController extends Controller
             if (auth()->user()->user_type === 'admin')
             {
                 Session::put('userType', 'admin');
+                activity('Admin login')
+                    ->performedOn(auth()->user())
+                    ->log(auth()->user()->name . '  admin login');
                 return redirect()->route('index');
             }
             elseif (auth()->user()->user_type === 'seller')
             {
                 Session::put('userType', 'seller');
+                activity('Seller login')
+                    ->performedOn(auth()->user())
+                    ->log(auth()->user()->name . '  seller login');
                 return redirect()->route('index');
             }
             elseif (auth()->user()->user_type === 'customer')
@@ -51,6 +57,9 @@ class LoginController extends Controller
 
     public function logout()
     {
+        activity(auth()->user()->user_type . '' . ' logout')
+            ->performedOn(auth()->user())
+            ->log(auth()->user()->name . ' ' . auth()->user()->user_type . '' .' logout');
         Session::flush();
         Auth::logout();
         return redirect()
@@ -77,6 +86,11 @@ class LoginController extends Controller
         $seller = new Seller;
         $seller->user_id = $user->id;
         $seller->save();
+
+        activity('Seller register')
+            ->performedOn($seller)
+            ->log($user->name . '' . ' are to send seller request');
+
         return redirect()->route('login');
     }
 

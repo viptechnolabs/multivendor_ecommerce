@@ -46,6 +46,9 @@ Route::middleware(['auth', 'checkUserStatus'])->group(function () {
     Route::post('update_category/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('update_category');
 
 
+    Route::get('activity_log', [\App\Http\Controllers\IndexController::class, 'activityLog'])->name('activity_log');
+
+
 });
 Route::get('/forget-password',[App\Http\Controllers\Auth\LoginController::class,'forgetPassword'])->name('forgetPassword');
 Route::post('/forget-password',[App\Http\Controllers\Auth\LoginController::class,'resetPassword'])->name('resetPassword');

@@ -29,6 +29,9 @@ class SellerController extends Controller
         $seller = Seller::findOrFail($request->id);
         $seller->verification_status = $request->status;
         if ($seller->save()) {
+            activity('Verification status')
+                ->performedOn($seller)
+                ->log($seller->name . ' seller are verified');
             session()->flash('message', 'Approved sellers updated successfully');
             return 1;
         }
@@ -40,6 +43,9 @@ class SellerController extends Controller
         $seller = Seller::findOrFail($id);
         # Send mail
         $seller->user->notify(new SellerRequestDelete());
+        activity('Verification status')
+            ->performedOn($seller)
+            ->log($seller->name . ' seller are rejected');
         return back();
     }
 
@@ -49,6 +55,9 @@ class SellerController extends Controller
         $user = User::findOrFail($seller->user_id);
         $user->banned = $request->status;
         if ($user->save()) {
+            activity('User status update')
+                ->performedOn($seller)
+                ->log($seller->name . '' . 'seller status updated');
             return 1;
         }
         return 0;

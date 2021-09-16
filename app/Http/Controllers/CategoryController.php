@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Utility\CategoryUtility;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -64,6 +65,10 @@ class CategoryController extends Controller
         $category_translation->name = $request->name;
         $category_translation->save();
 
+        activity('Category add')
+            ->performedOn($category)
+            ->log($category->name . ' category are added');
+
         session()->flash('message', 'Category has been inserted successfully');
         return redirect()->route('category');
     }
@@ -73,6 +78,10 @@ class CategoryController extends Controller
         $category = Category::findOrFail($request->id);
         $category->featured = $request->status;
         if($category->save()){
+            activity('Category update featured')
+                ->performedOn($category)
+                ->withProperties([$category->id => $category->featured])
+                ->log('Featured update ' .$category->name . ' category');
             return 1;
         }
         return 0;
@@ -93,6 +102,10 @@ class CategoryController extends Controller
 //        }
 
         CategoryUtility::delete_category($id);
+
+        activity('Category deleted')
+            ->performedOn($category)
+            ->log($category->name . ' category are deleted');
 
         session()->flash('message', 'Category has been deleted successfully');
 //        flash('Category has been deleted successfully')->success();
@@ -164,6 +177,10 @@ class CategoryController extends Controller
         $category_translation = CategoryTranslation::firstOrNew(['lang' => 'English', 'category_id' => $category->id]);
         $category_translation->name = $request->name;
         $category_translation->save();
+
+        activity('Category update')
+            ->performedOn($category)
+            ->log($category->name . ' category are updated');
 
         session()->flash('message', 'Category has been updated successfully');
         return redirect()->route('category');

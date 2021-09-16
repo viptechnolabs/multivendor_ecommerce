@@ -661,6 +661,14 @@
                                 <span class="aiz-side-nav-text">Addon Manager</span>
                             </a>
                         </li>
+
+                        <!-- Activity Log -->
+                        <li class="aiz-side-nav-item">
+                            <a href="{{ route('activity_log') }}" class="aiz-side-nav-link ">
+                                <i class="las la-history aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text">Activity Log</span>
+                            </a>
+                        </li>
                     </ul><!-- .aiz-side-nav -->
                     @endif
                 @if(Auth::user()->user_type === 'seller')
