@@ -16,8 +16,8 @@ Route::view('/reset','Auth.reset');
 Route::middleware(['no-auth'])->group(function () {
     Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
     Route::post('do_login', [App\Http\Controllers\Auth\LoginController::class, 'doLogin'])->name('do_login');
-    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::post('/aiz-uploader', [\App\Http\Controllers\AizUploadController::class, 'show_uploader']);
 Route::post('/aiz-uploader/upload', [\App\Http\Controllers\AizUploadController::class, 'upload']);
@@ -27,7 +27,7 @@ Route::get('/aiz-uploader/download/{id}', [\App\Http\Controllers\AizUploadContro
 
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'checkUserStatus'])->group(function () {
     Route::get('/',[App\Http\Controllers\IndexController::class,'index'])->name('index');
 
     Route::get('seller', [\App\Http\Controllers\seller\SellerController::class, 'index'])->name('seller');

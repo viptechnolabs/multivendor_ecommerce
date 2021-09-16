@@ -24,7 +24,7 @@ class LoginController extends Controller
 
     public function doLogin(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->filled('remember')))
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'banned' => '1'], $request->filled('remember')))
         {
             if (auth()->user()->user_type === 'admin')
             {

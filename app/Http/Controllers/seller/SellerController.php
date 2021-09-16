@@ -35,7 +35,7 @@ class SellerController extends Controller
         return 0;
     }
 
-    public function sellerRequestDelete(Request $request, $id)
+    public function sellerRequestDelete(Request $request, $id): \Illuminate\Http\RedirectResponse
     {
         $seller = Seller::findOrFail($id);
         # Send mail
