@@ -4,6 +4,8 @@ namespace App\Http\Controllers\seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
+use App\Models\User;
+use App\Notifications\SellerRequestDelete;
 use Illuminate\Http\Request;
 
 class SellerController extends Controller
@@ -22,15 +24,42 @@ class SellerController extends Controller
         return view('sellers.seller_request',['sellers'=>$sellers]);
     }
 
-    public function updateApproved(Request $request)
+    public function sellerApproved(Request $request): int
     {
         $seller = Seller::findOrFail($request->id);
         $seller->verification_status = $request->status;
         if ($seller->save()) {
+            activity('Verification status')
+                ->performedOn($seller)
+                ->log($seller->name . ' seller are verified');
+            session()->flash('message', 'Approved sellers updated successfully');
             return 1;
         }
         return 0;
-//        session()->flash('message', 'Category has been updated successfully');
-//        return redirect()->route('category');
+    }
+
+    public function sellerRequestDelete(Request $request, $id): \Illuminate\Http\RedirectResponse
+    {
+        $seller = Seller::findOrFail($id);
+        # Send mail
+        $seller->user->notify(new SellerRequestDelete());
+        activity('Verification status')
+            ->performedOn($seller)
+            ->log($seller->name . ' seller are rejected');
+        return back();
+    }
+
+    public function updateSellerStatus(Request $request): int
+    {
+        $seller = Seller::findOrFail($request->id);
+        $user = User::findOrFail($seller->user_id);
+        $user->banned = $request->status;
+        if ($user->save()) {
+            activity('User status update')
+                ->performedOn($seller)
+                ->log($seller->name . '' . 'seller status updated');
+            return 1;
+        }
+        return 0;
     }
 }

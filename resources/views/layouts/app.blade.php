@@ -1,6 +1,6 @@
 @php
     $type = Session::get('userType');
-    $active = Auth::user()->status;
+    $active = Auth::user()->banned;
 @endphp
     <!doctype html>
 <html lang="en">
@@ -268,7 +268,7 @@
                             </a>
                             <ul class="aiz-side-nav-list level-2 mm-collapse">
                                 <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/customers" class="aiz-side-nav-link">
+                                    <a href="{{ route('customer') }}" class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">Customer list</span>
                                     </a>
                                 </li>
@@ -661,6 +661,14 @@
                                 <span class="aiz-side-nav-text">Addon Manager</span>
                             </a>
                         </li>
+
+                        <!-- Activity Log -->
+                        <li class="aiz-side-nav-item">
+                            <a href="{{ route('activity_log') }}" class="aiz-side-nav-link ">
+                                <i class="las la-history aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text">Activity Log</span>
+                            </a>
+                        </li>
                     </ul><!-- .aiz-side-nav -->
                     @endif
                 @if(Auth::user()->user_type === 'seller')
@@ -675,7 +683,7 @@
                     @php
 
                     @endphp
-                    @if(Auth::user()->status == 1)
+                    @if(Auth::user()->banned == 1)
                         <!-- Product -->
                             <li class="aiz-side-nav-item">
                                 <a href="#" class="aiz-side-nav-link">

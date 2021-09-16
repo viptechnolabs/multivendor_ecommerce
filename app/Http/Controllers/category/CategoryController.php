@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\category;
 
 use App\CategoryTranslation;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Utility\CategoryUtility;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -26,7 +26,7 @@ class CategoryController extends Controller
         return view('categories.create', ['categories' => $categories]);
     }
 
-    public function submitCategory(Request $request)
+    public function submitCategory(Request $request): \Illuminate\Http\RedirectResponse
     {
         $category = new Category;
         $category->name = $request->name;
@@ -64,21 +64,29 @@ class CategoryController extends Controller
         $category_translation->name = $request->name;
         $category_translation->save();
 
+        activity('Category add')
+            ->performedOn($category)
+            ->log($category->name . ' category are added');
+
         session()->flash('message', 'Category has been inserted successfully');
         return redirect()->route('category');
     }
 
-    public function updateFeatured(Request $request)
+    public function updateFeatured(Request $request): int
     {
         $category = Category::findOrFail($request->id);
         $category->featured = $request->status;
         if($category->save()){
+            activity('Category update featured')
+                ->performedOn($category)
+                ->withProperties([$category->id => $category->featured])
+                ->log('Featured update ' .$category->name . ' category');
             return 1;
         }
         return 0;
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         $category = Category::findOrFail($id);
 
@@ -93,6 +101,10 @@ class CategoryController extends Controller
 //        }
 
         CategoryUtility::delete_category($id);
+
+        activity('Category deleted')
+            ->performedOn($category)
+            ->log($category->name . ' category are deleted');
 
         session()->flash('message', 'Category has been deleted successfully');
 //        flash('Category has been deleted successfully')->success();
@@ -111,12 +123,12 @@ class CategoryController extends Controller
         return view('categories.edit',  ['category' => $category, 'categories' => $categories]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): \Illuminate\Http\RedirectResponse
     {
 
         $category = Category::findOrFail($id);
 
-            $category->name = $request->name;
+        $category->name = $request->name;
 
         if($request->order_level != null) {
             $category->order_level = $request->order_level;
@@ -164,6 +176,10 @@ class CategoryController extends Controller
         $category_translation = CategoryTranslation::firstOrNew(['lang' => 'English', 'category_id' => $category->id]);
         $category_translation->name = $request->name;
         $category_translation->save();
+
+        activity('Category update')
+            ->performedOn($category)
+            ->log($category->name . ' category are updated');
 
         session()->flash('message', 'Category has been updated successfully');
         return redirect()->route('category');
