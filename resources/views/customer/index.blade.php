@@ -6,7 +6,7 @@
             <div class="aiz-titlebar text-left mt-2 mb-3">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <h1 class="h3">All Sellers</h1>
+                        <h1 class="h3">All Customer</h1>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <form class="" id="sort_sellers" action="" method="GET">
                     <div class="card-header row gutters-5">
                         <div class="col">
-                            <h5 class="mb-md-0 h6">All Sellers</h5>
+                            <h5 class="mb-md-0 h6">All Customer</h5>
                         </div>
 
                         {{--                        <div class="dropdown mb-2 mb-md-0">--}}
@@ -52,7 +52,6 @@
                                 <th>Name</th>
 {{--                                <th data-breakpoints="lg">Phone</th>--}}
                                 <th data-breakpoints="lg">Email Address</th>
-                                <th data-breakpoints="lg">Verification Info</th>
                                 <th data-breakpoints="lg">Status</th>
                                 <th data-breakpoints="lg">Num. of Products</th>
                                 <th data-breakpoints="lg">Due to seller</th>
@@ -60,49 +59,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($sellers as $key => $seller)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td> {{$seller->user->name}}</td>
-{{--                                    <td>{{$seller->user->phone}}</td>--}}
-                                    <td>{{$seller->user->email}}</td>
-                                    <td>
-                                        {{--                                            @if ($seller->verification_info != null)--}}
-                                        <a href="#">
-                                            <span class="badge badge-inline badge-{{ $seller->verification_status ? 'info' : 'danger' }}">{{ $seller->verification_status ? 'Verified' : 'Not verified' }}</span>
-                                        </a>
-
-                                    </td>
-                                    <td>
-                                        <label class="aiz-switch aiz-switch-success mb-0">
-                                            <input onchange="update_status(this)" value="{{ $seller->id }}"
-                                                   type="checkbox" <?php if ($seller->user->banned == 1) echo "checked";?> >
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
-                                    <td>10</td>
-                                    <td>
-                                        Due to Admin
-                                    </td>
-                                    <td>
-
-                                        <a href="" class="btn btn-soft-primary btn-icon btn-circle btn-sm" title="Log in as this Customer">
-                                            <i class="las la-edit"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-soft-info btn-icon btn-circle btn-sm" onclick="confirm_ban('https://demo.activeitzone.com/ecommerce/admin/customers_ban/5');" title="Ban this Customer">
-                                            <i class="las la-user"></i>
-                                        </a>
-{{--                                        <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="https://demo.activeitzone.com/ecommerce/admin/customers/destroy/5" title="Delete">--}}
-{{--                                            <i class="las la-trash"></i>--}}
-{{--                                        </a>--}}
-
-                                    </td>
-                                </tr>
-                            @endforeach
                             </tbody>
                         </table>
                         <div class="aiz-pagination">
-                            {{ $sellers->appends(request()->input())->links() }}
+{{--                            {{ $sellers->appends(request()->input())->links() }}--}}
                         </div>
                     </div>
                     </from>

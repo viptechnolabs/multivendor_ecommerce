@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\category;
 
 use App\CategoryTranslation;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Utility\CategoryUtility;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -129,7 +128,7 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
 
-            $category->name = $request->name;
+        $category->name = $request->name;
 
         if($request->order_level != null) {
             $category->order_level = $request->order_level;

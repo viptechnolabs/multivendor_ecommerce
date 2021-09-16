@@ -85,17 +85,25 @@
 {{----}}
 {{--                                        </td>--}}
                                         <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
-                                                    <i class="las la-ellipsis-v"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                                    <a href="#" onclick="show_seller_profile('{{$seller->id}}');"  class="dropdown-item">
-                                                        Profile
-                                                    </a>
-                                                    <a href="{{ route('seller_request_delete', $seller->id) }}" class="dropdown-item">
-                                                        Delete Request
-                                                    </a>
+
+                                            <a href="#" class="btn btn-soft-info btn-icon btn-circle btn-sm" onclick="confirm_ban('https://demo.activeitzone.com/ecommerce/admin/customers_ban/5');" title="Ban this Customer">
+                                                <i class="las la-user"></i>
+                                            </a>
+                                            <a href="{{ route('seller_request_delete', $seller->id) }}" class="btn btn-soft-danger btn-icon btn-circle btn-sm">
+                                                <i class="las la-trash"></i>
+                                            </a>
+
+{{--                                            <div class="dropdown">--}}
+{{--                                                <button type="button" class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">--}}
+{{--                                                    <i class="las la-ellipsis-v"></i>--}}
+{{--                                                </button>--}}
+{{--                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">--}}
+{{--                                                    <a href="#" onclick="show_seller_profile('{{$seller->id}}');"  class="dropdown-item">--}}
+{{--                                                        Profile--}}
+{{--                                                    </a>--}}
+{{--                                                    <a href="{{ route('seller_request_delete', $seller->id) }}" class="dropdown-item">--}}
+{{--                                                        Delete Request--}}
+{{--                                                    </a>--}}
 {{--                                                    <a href="#" onclick="show_seller_payment_modal('{{$seller->id}}');" class="dropdown-item">--}}
 {{--                                                        {{translate('Go to Payment')}}--}}
 {{--                                                    </a>--}}
@@ -119,8 +127,8 @@
 {{--                                                    <a href="#" class="dropdown-item confirm-delete" data-href="{{route('sellers.destroy', $seller->id)}}" class="">--}}
 {{--                                                        {{translate('Delete')}}--}}
 {{--                                                    </a>--}}
-                                                </div>
-                                            </div>
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                         </td>
                                     </tr>
                             @endforeach

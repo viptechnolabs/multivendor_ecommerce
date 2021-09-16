@@ -268,7 +268,7 @@
                             </a>
                             <ul class="aiz-side-nav-list level-2 mm-collapse">
                                 <li class="aiz-side-nav-item">
-                                    <a href="http://127.0.0.1/ecommerce/admin/customers" class="aiz-side-nav-link">
+                                    <a href="{{ route('customer') }}" class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">Customer list</span>
                                     </a>
                                 </li>

@@ -37,13 +37,17 @@ Route::middleware(['auth', 'checkUserStatus'])->group(function () {
     Route::post('seller_update_status', [\App\Http\Controllers\seller\SellerController::class, 'updateSellerStatus'])->name('seller_update_status');
 
 
-    Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category');
-    Route::get('add_category', [\App\Http\Controllers\CategoryController::class, 'addCategory'])->name('add_category');
-    Route::post('submit_category', [\App\Http\Controllers\CategoryController::class, 'submitCategory'])->name('submit_category');
-    Route::post('category_featured', [\App\Http\Controllers\CategoryController::class, 'updateFeatured'])->name('category_featured');
-    Route::get('category_destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category_destroy');
-    Route::get('category_edit/{id}', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('category_edit');
-    Route::post('update_category/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('update_category');
+    Route::get('category', [\App\Http\Controllers\category\CategoryController::class, 'index'])->name('category');
+    Route::get('add_category', [\App\Http\Controllers\category\CategoryController::class, 'addCategory'])->name('add_category');
+    Route::post('submit_category', [\App\Http\Controllers\category\CategoryController::class, 'submitCategory'])->name('submit_category');
+    Route::post('category_featured', [\App\Http\Controllers\category\CategoryController::class, 'updateFeatured'])->name('category_featured');
+    Route::get('category_destroy/{id}', [\App\Http\Controllers\category\CategoryController::class, 'destroy'])->name('category_destroy');
+    Route::get('category_edit/{id}', [\App\Http\Controllers\category\CategoryController::class, 'edit'])->name('category_edit');
+    Route::post('update_category/{id}', [\App\Http\Controllers\category\CategoryController::class, 'update'])->name('update_category');
+
+
+    Route::get('customer', [\App\Http\Controllers\customer\CustomerController::class, 'index'])->name('customer');
+
 
 
     Route::get('activity_log', [\App\Http\Controllers\IndexController::class, 'activityLog'])->name('activity_log');
