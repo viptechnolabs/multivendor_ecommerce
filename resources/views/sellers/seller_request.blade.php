@@ -221,7 +221,7 @@
 
 
         {{--function show_seller_payment_modal(id){--}}
-        {{--    $.post('{{ route('sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){--}}
+        {{--    $.post('{{ route('sellers.payment_modal',{_token:'{{ @csrf_token() }}', id:id}, function(data){--}}
         {{--        $('#payment_modal #payment-modal-content').html(data);--}}
         {{--        $('#payment_modal').modal('show', {backdrop: 'static'});--}}
         {{--        $('.demo-select2-placeholder').select2();--}}
@@ -229,7 +229,7 @@
         {{--}--}}
 
         {{--        function show_seller_profile(id){--}}
-        {{--            $.post('{{ route('sellers.profile_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){--}}
+        {{--            $.post('{{ route('sellers.profile_modal',{_token:'{{ @csrf_token() }}', id:id}, function(data){--}}
         {{--                $('#profile_modal #profile-modal-content').html(data);--}}
         {{--                $('#profile_modal').modal('show', {backdrop: 'static'});--}}
         {{--            });--}}
@@ -241,12 +241,12 @@
             } else {
                 var status = 0;
             }
-            $.post('{{ route('sellers.approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+            $.post('{{ route('seller_request_approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Approved sellers updated successfully') }}');
+                    AIZ.plugins.notify('success', 'Approved sellers updated successfully');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    AIZ.plugins.notify('danger', 'Something went wrong');
                 }
             });
         }

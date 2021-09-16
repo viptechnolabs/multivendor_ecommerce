@@ -28,15 +28,17 @@
                         {{--                        </div>--}}
 
                         <div class="col-md-3 ml-auto">
-                            <select class="form-control aiz-selectpicker" name="approved_status" id="approved_status" onchange="sort_sellers()">
+                            <select class="form-control aiz-selectpicker" name="approved_status" id="approved_status"
+                                    onchange="sort_sellers()">
                                 <option value="">Filter by Approval</option>
-                                <option value="1" >Approved</option>
-                                <option value="0" >Non-Approved</option>
+                                <option value="1">Approved</option>
+                                <option value="0">Non-Approved</option>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mb-0">
-                                <input type="text" class="form-control" id="search" name="search" placeholder="Type name or email & Enter">
+                                <input type="text" class="form-control" id="search" name="search"
+                                       placeholder="Type name or email & Enter">
                             </div>
                         </div>
                     </div>
@@ -59,71 +61,74 @@
                             </thead>
                             <tbody>
                             @foreach($sellers as $key => $seller)
-                                @if($seller->user != null)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        </td>
-                                        <td> {{$seller->user->name}}</td>
-                                        <td>{{$seller->user->phone}}</td>
-                                        <td>{{$seller->user->email}}</td>
-                                        <td>
-                                            {{--                                            @if ($seller->verification_info != null)--}}
-                                            <a href="#">
-                                                <span class="badge badge-inline badge-info">Show</span>
-                                            </a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <label class="aiz-switch aiz-switch-success mb-0">
-                                                <input onchange="update_approved(this)" value="{{ $seller->id }}" type="checkbox" <?php if($seller->verification_status == 1) echo "checked";?> >
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td>10</td>
-                                        <td>
-                                            Due to Admin
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td> {{$seller->user->name}}</td>
+                                    <td>{{$seller->user->phone}}</td>
+                                    <td>{{$seller->user->email}}</td>
+                                    <td>
+                                        {{--                                            @if ($seller->verification_info != null)--}}
+                                        <a href="#">
+                                            <span class="badge badge-inline badge-info">Show</span>
+                                        </a>
 
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
-                                                    <i class="las la-ellipsis-v"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                                    <a href="#" onclick="show_seller_profile('{{$seller->id}}');"  class="dropdown-item">
-                                                        Profile
-                                                    </a>
-                                                    <a href="" class="dropdown-item">
-                                                        Log in as this Seller
-                                                    </a>
-                                                    {{--                                                    <a href="#" onclick="show_seller_payment_modal('{{$seller->id}}');" class="dropdown-item">--}}
-                                                    {{--                                                        {{translate('Go to Payment')}}--}}
-                                                    {{--                                                    </a>--}}
-                                                    {{--                                                    <a href="{{route('sellers.payment_history', encrypt($seller->id))}}" class="dropdown-item">--}}
-                                                    {{--                                                        {{translate('Payment History')}}--}}
-                                                    {{--                                                    </a>--}}
-                                                    {{--                                                    <a href="{{route('sellers.edit', encrypt($seller->id))}}" class="dropdown-item">--}}
-                                                    {{--                                                        {{translate('Edit')}}--}}
-                                                    {{--                                                    </a>--}}
-                                                    {{--                                                    @if($seller->user->banned != 1)--}}
-                                                    {{--                                                        <a href="#" onclick="confirm_ban('{{route('sellers.ban', $seller->id)}}');" class="dropdown-item">--}}
-                                                    {{--                                                            {{translate('Ban this seller')}}--}}
-                                                    {{--                                                            <i class="fa fa-ban text-danger" aria-hidden="true"></i>--}}
-                                                    {{--                                                        </a>--}}
-                                                    {{--                                                    @else--}}
-                                                    {{--                                                        <a href="#" onclick="confirm_unban('{{route('sellers.ban', $seller->id)}}');" class="dropdown-item">--}}
-                                                    {{--                                                            {{translate('Unban this seller')}}--}}
-                                                    {{--                                                            <i class="fa fa-check text-success" aria-hidden="true"></i>--}}
-                                                    {{--                                                        </a>--}}
-                                                    {{--                                                    @endif--}}
-                                                    {{--                                                    <a href="#" class="dropdown-item confirm-delete" data-href="{{route('sellers.destroy', $seller->id)}}" class="">--}}
-                                                    {{--                                                        {{translate('Delete')}}--}}
-                                                    {{--                                                    </a>--}}
-                                                </div>
+                                    </td>
+                                    <td>
+                                        <label class="aiz-switch aiz-switch-success mb-0">
+                                            <input onchange="update_approved(this)" value="{{ $seller->id }}"
+                                                   type="checkbox" <?php if ($seller->verification_status == 1) echo "checked";?> >
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
+                                    <td>10</td>
+                                    <td>
+                                        Due to Admin
+
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-circle btn-soft-primary btn-icon dropdown-toggle no-arrow"
+                                                    data-toggle="dropdown" href="javascript:void(0);" role="button"
+                                                    aria-haspopup="false" aria-expanded="false">
+                                                <i class="las la-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
+                                                <a href="#" onclick="show_seller_profile('{{$seller->id}}');"
+                                                   class="dropdown-item">
+                                                    Profile
+                                                </a>
+                                                <a href="" class="dropdown-item">
+                                                    Log in as this Seller
+                                                </a>
+                                                {{--                                                    <a href="#" onclick="show_seller_payment_modal('{{$seller->id}}');" class="dropdown-item">--}}
+                                                {{--                                                        {{translate('Go to Payment')}}--}}
+                                                {{--                                                    </a>--}}
+                                                {{--                                                    <a href="{{route('sellers.payment_history', encrypt($seller->id))}}" class="dropdown-item">--}}
+                                                {{--                                                        {{translate('Payment History')}}--}}
+                                                {{--                                                    </a>--}}
+                                                {{--                                                    <a href="{{route('sellers.edit', encrypt($seller->id))}}" class="dropdown-item">--}}
+                                                {{--                                                        {{translate('Edit')}}--}}
+                                                {{--                                                    </a>--}}
+                                                {{--                                                    @if($seller->user->banned != 1)--}}
+                                                {{--                                                        <a href="#" onclick="confirm_ban('{{route('sellers.ban', $seller->id)}}');" class="dropdown-item">--}}
+                                                {{--                                                            {{translate('Ban this seller')}}--}}
+                                                {{--                                                            <i class="fa fa-ban text-danger" aria-hidden="true"></i>--}}
+                                                {{--                                                        </a>--}}
+                                                {{--                                                    @else--}}
+                                                {{--                                                        <a href="#" onclick="confirm_unban('{{route('sellers.ban', $seller->id)}}');" class="dropdown-item">--}}
+                                                {{--                                                            {{translate('Unban this seller')}}--}}
+                                                {{--                                                            <i class="fa fa-check text-success" aria-hidden="true"></i>--}}
+                                                {{--                                                        </a>--}}
+                                                {{--                                                    @endif--}}
+                                                {{--                                                    <a href="#" class="dropdown-item confirm-delete" data-href="{{route('sellers.destroy', $seller->id)}}" class="">--}}
+                                                {{--                                                        {{translate('Delete')}}--}}
+                                                {{--                                                    </a>--}}
                                             </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <div class="aiz-pagination">
