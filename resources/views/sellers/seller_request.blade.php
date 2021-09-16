@@ -93,8 +93,8 @@
                                                     <a href="#" onclick="show_seller_profile('{{$seller->id}}');"  class="dropdown-item">
                                                         Profile
                                                     </a>
-                                                    <a href="" class="dropdown-item">
-                                                        Log in as this Seller
+                                                    <a href="{{ route('seller_request_delete', $seller->id) }}" class="dropdown-item">
+                                                        Delete Request
                                                     </a>
 {{--                                                    <a href="#" onclick="show_seller_payment_modal('{{$seller->id}}');" class="dropdown-item">--}}
 {{--                                                        {{translate('Go to Payment')}}--}}

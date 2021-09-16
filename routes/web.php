@@ -32,7 +32,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('seller', [\App\Http\Controllers\seller\SellerController::class, 'index'])->name('seller');
     Route::get('seller_request', [\App\Http\Controllers\seller\SellerController::class, 'sellerRequest'])->name('seller_request');
-    Route::post('seller_request_approved', [\App\Http\Controllers\seller\SellerController::class, 'updateApproved'])->name('seller_request_approved');
+    Route::post('seller_request_approved', [\App\Http\Controllers\seller\SellerController::class, 'sellerApproved'])->name('seller_request_approved');
+    Route::get('seller_request_delete/{id}', [\App\Http\Controllers\seller\SellerController::class, 'sellerRequestDelete'])->name('seller_request_delete');
     Route::post('seller_update_status', [\App\Http\Controllers\seller\SellerController::class, 'updateSellerStatus'])->name('seller_update_status');
 
 

@@ -26,7 +26,7 @@ class CategoryController extends Controller
         return view('categories.create', ['categories' => $categories]);
     }
 
-    public function submitCategory(Request $request)
+    public function submitCategory(Request $request): \Illuminate\Http\RedirectResponse
     {
         $category = new Category;
         $category->name = $request->name;
@@ -68,7 +68,7 @@ class CategoryController extends Controller
         return redirect()->route('category');
     }
 
-    public function updateFeatured(Request $request)
+    public function updateFeatured(Request $request): int
     {
         $category = Category::findOrFail($request->id);
         $category->featured = $request->status;
@@ -78,7 +78,7 @@ class CategoryController extends Controller
         return 0;
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         $category = Category::findOrFail($id);
 
@@ -111,7 +111,7 @@ class CategoryController extends Controller
         return view('categories.edit',  ['category' => $category, 'categories' => $categories]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): \Illuminate\Http\RedirectResponse
     {
 
         $category = Category::findOrFail($id);

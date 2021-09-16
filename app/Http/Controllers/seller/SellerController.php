@@ -5,6 +5,7 @@ namespace App\Http\Controllers\seller;
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
 use App\Models\User;
+use App\Notifications\SellerRequestDelete;
 use Illuminate\Http\Request;
 
 class SellerController extends Controller
@@ -23,7 +24,7 @@ class SellerController extends Controller
         return view('sellers.seller_request',['sellers'=>$sellers]);
     }
 
-    public function updateApproved(Request $request): int
+    public function sellerApproved(Request $request): int
     {
         $seller = Seller::findOrFail($request->id);
         $seller->verification_status = $request->status;
@@ -34,12 +35,19 @@ class SellerController extends Controller
         return 0;
     }
 
+    public function sellerRequestDelete(Request $request, $id)
+    {
+        $seller = Seller::findOrFail($id);
+        # Send mail
+        $seller->user->notify(new SellerRequestDelete());
+        return back();
+    }
+
     public function updateSellerStatus(Request $request): int
     {
         $seller = Seller::findOrFail($request->id);
         $user = User::findOrFail($seller->user_id);
         $user->banned = $request->status;
-//        $seller->verification_status = $request->status;
         if ($user->save()) {
             return 1;
         }
