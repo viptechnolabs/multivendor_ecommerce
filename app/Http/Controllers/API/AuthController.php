@@ -3,25 +3,25 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
-use Validator;
 
 class AuthController extends Controller
 {
     use HasApiTokens;
-    public function login(Request $request) //TODO Validation
+
+    public function login(LoginRequest $request) //TODO Validation
     {
         $email = $request->email;
         $password = $request->password;
         $user = User::whereEmail($email)->first();
         if ($user) {
-            if ($user->user_type == 'customer')
-            {
+            if ($user->user_type == 'customer') {
                 if (Hash::check($password, $user->password)) {
                     $token = $user->createToken('auth_token')->plainTextToken;
                     return (new UserResource($user))->additional(['token' => $token]);
@@ -30,7 +30,7 @@ class AuthController extends Controller
                 }
             }
         }
-            return ['message' => 'Invalid Email Or Password'];
+        return ['message' => 'Invalid Email Or Password'];
     }
 
     public function signup(Request $request): UserResource // TODO validation
@@ -54,9 +54,10 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
         return (new UserResource($user))->additional(['token' => $token]);
     }
+
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return ['message'=>'Logout Successfully'];
+        return ['message' => 'Logout Successfully'];
     }
 }

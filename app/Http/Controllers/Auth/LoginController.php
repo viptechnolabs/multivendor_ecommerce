@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\SellerSignupRequest;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,7 +24,7 @@ class LoginController extends Controller
         return view('Auth.login');
     }
 
-    public function doLogin(Request $request)
+    public function doLogin(LoginRequest $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->filled('remember')))
         {
@@ -58,7 +60,7 @@ class LoginController extends Controller
             ->with('message', 'Logout successfully...!');
     }
 
-    public function register(Request $request)
+    public function register(SellerSignupRequest $request)
     {
         #param
         $name = $request->input('name');
