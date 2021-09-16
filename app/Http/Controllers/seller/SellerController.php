@@ -62,4 +62,12 @@ class SellerController extends Controller
         }
         return 0;
     }
+
+    public function sellerProfile($id)
+    {
+        dd($id);
+//        $seller = Seller::findOrFail($id);
+//        dd($seller);
+    }
+
 }
