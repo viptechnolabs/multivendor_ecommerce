@@ -19,6 +19,7 @@ Route::middleware(['no-auth'])->group(function () {
 });
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
+
 Route::post('/aiz-uploader', [\App\Http\Controllers\AizUploadController::class, 'show_uploader']);
 Route::post('/aiz-uploader/upload', [\App\Http\Controllers\AizUploadController::class, 'upload']);
 Route::get('/aiz-uploader/get_uploaded_files', [\App\Http\Controllers\AizUploadController::class, 'get_uploaded_files']);
@@ -52,7 +53,7 @@ Route::middleware(['auth', 'checkUserStatus'])->group(function () {
 
     Route::get('activity_log', [\App\Http\Controllers\IndexController::class, 'activityLog'])->name('activity_log');
 
-
+    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
 Route::get('/forget-password',[App\Http\Controllers\Auth\LoginController::class,'forgetPassword'])->name('forgetPassword');
 Route::post('/forget-password',[App\Http\Controllers\Auth\LoginController::class,'resetPassword'])->name('resetPassword');
