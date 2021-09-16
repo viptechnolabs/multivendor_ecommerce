@@ -46,16 +46,7 @@
                             <thead>
                             <tr>
                                 <!--<th data-breakpoints="lg">#</th>-->
-                                <th>
-                                    <div class="form-group">
-                                        <div class="aiz-checkbox-inline">
-                                            <label class="aiz-checkbox">
-                                                <input type="checkbox" class="check-all">
-                                                <span class="aiz-square-check"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </th>
+                                <th data-breakpoints="lg">#</th>
                                 <th>Name</th>
                                 <th data-breakpoints="lg">Phone</th>
                                 <th data-breakpoints="lg">Email Address</th>
@@ -71,16 +62,7 @@
 {{--                                @if($seller->user != null)--}}
                                     <tr>
 {{--                                    <!--<td>{{ ($key+1) + ($sellers->currentPage() - 1)*$sellers->perPage() }}</td>-->--}}
-                                        <td>
-                                            <div class="form-group">
-                                                <div class="aiz-checkbox-inline">
-                                                    <label class="aiz-checkbox">
-                                                        <input type="checkbox" class="check-one" name="id[]" value="{{$seller->id}}">
-                                                        <span class="aiz-square-check"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td>{{ $key + 1 }}</td>
                                         <td> {{$seller->user->name}}</td>
                                         <td>{{$seller->user->phone}}</td>
                                         <td>{{$seller->user->email}}</td>
@@ -219,6 +201,8 @@
 @endsection
 
 @section('script')
+
+
     <script type="text/javascript">
         $(document).on("change", ".check-all", function () {
             if (this.checked) {
@@ -234,8 +218,10 @@
 
         });
 
+
+
         {{--function show_seller_payment_modal(id){--}}
-        {{--    $.post('{{ route('sellers.payment_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){--}}
+        {{--    $.post('{{ route('sellers.payment_modal',{_token:'{{ @csrf_token() }}', id:id}, function(data){--}}
         {{--        $('#payment_modal #payment-modal-content').html(data);--}}
         {{--        $('#payment_modal').modal('show', {backdrop: 'static'});--}}
         {{--        $('.demo-select2-placeholder').select2();--}}
@@ -243,7 +229,7 @@
         {{--}--}}
 
         {{--        function show_seller_profile(id){--}}
-        {{--            $.post('{{ route('sellers.profile_modal') }}',{_token:'{{ @csrf_token() }}', id:id}, function(data){--}}
+        {{--            $.post('{{ route('sellers.profile_modal',{_token:'{{ @csrf_token() }}', id:id}, function(data){--}}
         {{--                $('#profile_modal #profile-modal-content').html(data);--}}
         {{--                $('#profile_modal').modal('show', {backdrop: 'static'});--}}
         {{--            });--}}
@@ -255,14 +241,14 @@
             } else {
                 var status = 0;
             }
-            {{--$.post('{{ route('sellers.approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){--}}
-            {{--    if(data == 1){--}}
-            {{--        AIZ.plugins.notify('success', '{{ translate('Approved sellers updated successfully') }}');--}}
-            {{--    }--}}
-            {{--    else{--}}
-            {{--        AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');--}}
-            {{--    }--}}
-            {{--});--}}
+            $.post('{{ route('seller_request_approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    AIZ.plugins.notify('success', 'Approved sellers updated successfully');
+                }
+                else{
+                    AIZ.plugins.notify('danger', 'Something went wrong');
+                }
+            });
         }
 
         function sort_sellers(el) {

@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('seller', [\App\Http\Controllers\seller\SellerController::class, 'index'])->name('seller');
     Route::get('seller_request', [\App\Http\Controllers\seller\SellerController::class, 'sellerRequest'])->name('seller_request');
+    Route::post('seller_request_approved', [\App\Http\Controllers\seller\SellerController::class, 'updateApproved'])->name('seller_request_approved');
 
 
     Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category');
