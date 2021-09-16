@@ -14,7 +14,7 @@ use Validator;
 class AuthController extends Controller
 {
     use HasApiTokens;
-    public function login(Request $request)
+    public function login(Request $request) //TODO Validation
     {
         $email = $request->email;
         $password = $request->password;
@@ -33,7 +33,7 @@ class AuthController extends Controller
             return ['message' => 'Invalid Email Or Password'];
     }
 
-    public function signup(Request $request): UserResource
+    public function signup(Request $request): UserResource // TODO validation
     {
         #param
         $email = $request->email;
