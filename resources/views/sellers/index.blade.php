@@ -50,10 +50,10 @@
                                 <!--<th data-breakpoints="lg">#</th>-->
                                 <th data-breakpoints="lg">#</th>
                                 <th>Name</th>
-                                <th data-breakpoints="lg">Phone</th>
+{{--                                <th data-breakpoints="lg">Phone</th>--}}
                                 <th data-breakpoints="lg">Email Address</th>
                                 <th data-breakpoints="lg">Verification Info</th>
-                                <th data-breakpoints="lg">Approval</th>
+                                <th data-breakpoints="lg">Status</th>
                                 <th data-breakpoints="lg">Num. of Products</th>
                                 <th data-breakpoints="lg">Due to seller</th>
                                 <th width="10%">Options</th>
@@ -64,26 +64,25 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td> {{$seller->user->name}}</td>
-                                    <td>{{$seller->user->phone}}</td>
+{{--                                    <td>{{$seller->user->phone}}</td>--}}
                                     <td>{{$seller->user->email}}</td>
                                     <td>
                                         {{--                                            @if ($seller->verification_info != null)--}}
                                         <a href="#">
-                                            <span class="badge badge-inline badge-info">Show</span>
+                                            <span class="badge badge-inline badge-{{ $seller->verification_status ? 'info' : 'danger' }}">{{ $seller->verification_status ? 'Verified' : 'Not verified' }}</span>
                                         </a>
 
                                     </td>
                                     <td>
                                         <label class="aiz-switch aiz-switch-success mb-0">
-                                            <input onchange="update_approved(this)" value="{{ $seller->id }}"
-                                                   type="checkbox" <?php if ($seller->verification_status == 1) echo "checked";?> >
+                                            <input onchange="update_status(this)" value="{{ $seller->id }}"
+                                                   type="checkbox" <?php if ($seller->user->banned == 1) echo "checked";?> >
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
                                     <td>10</td>
                                     <td>
                                         Due to Admin
-
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -236,20 +235,20 @@
         {{--            });--}}
         {{--        }--}}
 
-        function update_approved(el) {
+        function update_status(el) {
             if (el.checked) {
                 var status = 1;
             } else {
                 var status = 0;
             }
-            {{--$.post('{{ route('sellers.approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){--}}
-            {{--    if(data == 1){--}}
-            {{--        AIZ.plugins.notify('success', '{{ translate('Approved sellers updated successfully') }}');--}}
-            {{--    }--}}
-            {{--    else{--}}
-            {{--        AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');--}}
-            {{--    }--}}
-            {{--});--}}
+            $.post('{{ route('seller_update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    AIZ.plugins.notify('success', 'Seller status updated successfully');
+                }
+                else{
+                    AIZ.plugins.notify('danger', 'Something went wrong');
+                }
+            });
         }
 
         function sort_sellers(el) {
@@ -285,6 +284,8 @@
                 }
             });
         }
-
+        @if (session()->has('message'))
+        AIZ.plugins.notify('success', '{{ Session::get('message') }}');
+        @endif
     </script>
 @endsection

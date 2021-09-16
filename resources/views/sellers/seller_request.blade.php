@@ -48,7 +48,7 @@
                                 <!--<th data-breakpoints="lg">#</th>-->
                                 <th data-breakpoints="lg">#</th>
                                 <th>Name</th>
-                                <th data-breakpoints="lg">Phone</th>
+{{--                                <th data-breakpoints="lg">Phone</th>--}}
                                 <th data-breakpoints="lg">Email Address</th>
 {{--                                <th data-breakpoints="lg">Verification Info</th>--}}
                                 <th data-breakpoints="lg">Approval</th>
@@ -64,7 +64,7 @@
 {{--                                    <!--<td>{{ ($key+1) + ($sellers->currentPage() - 1)*$sellers->perPage() }}</td>-->--}}
                                         <td>{{ $key + 1 }}</td>
                                         <td> {{$seller->user->name}}</td>
-                                        <td>{{$seller->user->phone}}</td>
+{{--                                        <td>{{$seller->user->phone}}</td>--}}
                                         <td>{{$seller->user->email}}</td>
 {{--                                        <td>--}}
 {{--                                            @if ($seller->verification_info != null)--}}
@@ -243,7 +243,9 @@
             }
             $.post('{{ route('seller_request_approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', 'Approved sellers updated successfully');
+
+                    //AIZ.plugins.notify('success', 'Approved sellers updated successfully');
+                    window.location = "{{ route('seller') }}";
                 }
                 else{
                     AIZ.plugins.notify('danger', 'Something went wrong');

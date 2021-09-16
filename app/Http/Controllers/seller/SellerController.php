@@ -4,6 +4,7 @@ namespace App\Http\Controllers\seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SellerController extends Controller
@@ -22,15 +23,26 @@ class SellerController extends Controller
         return view('sellers.seller_request',['sellers'=>$sellers]);
     }
 
-    public function updateApproved(Request $request)
+    public function updateApproved(Request $request): int
     {
         $seller = Seller::findOrFail($request->id);
         $seller->verification_status = $request->status;
         if ($seller->save()) {
+            session()->flash('message', 'Approved sellers updated successfully');
             return 1;
         }
         return 0;
-//        session()->flash('message', 'Category has been updated successfully');
-//        return redirect()->route('category');
+    }
+
+    public function updateSellerStatus(Request $request): int
+    {
+        $seller = Seller::findOrFail($request->id);
+        $user = User::findOrFail($seller->user_id);
+        $user->banned = $request->status;
+//        $seller->verification_status = $request->status;
+        if ($user->save()) {
+            return 1;
+        }
+        return 0;
     }
 }

@@ -1,6 +1,6 @@
 @php
     $type = Session::get('userType');
-    $active = Auth::user()->status;
+    $active = Auth::user()->banned;
 @endphp
     <!doctype html>
 <html lang="en">
@@ -675,7 +675,7 @@
                     @php
 
                     @endphp
-                    @if(Auth::user()->status == 1)
+                    @if(Auth::user()->banned == 1)
                         <!-- Product -->
                             <li class="aiz-side-nav-item">
                                 <a href="#" class="aiz-side-nav-link">
