@@ -63,6 +63,3 @@ Route::post('/register',[App\Http\Controllers\Auth\LoginController::class,'regis
 
 //Route::get('/nav',[App\Http\Controllers\Auth\LoginController::class,'test'])->name('test');
 
-Route::get('test',function (){
-   return view('test');
-});
