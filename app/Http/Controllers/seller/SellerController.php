@@ -65,9 +65,8 @@ class SellerController extends Controller
 
     public function sellerProfile($id)
     {
-        dd($id);
-//        $seller = Seller::findOrFail($id);
-//        dd($seller);
+        $seller = Seller::findOrFail($id);
+        return view('sellers.seller_profile', ['seller', $seller]);
     }
 
 }

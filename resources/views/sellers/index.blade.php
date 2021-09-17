@@ -87,7 +87,7 @@
                                     </td>
                                     <td>
 
-                                        <a href="{{ route('seller_profile') }}" class="btn btn-soft-info btn-icon btn-circle btn-sm"
+                                        <a href="{{ route('seller_profile', $seller->id) }}" class="btn btn-soft-info btn-icon btn-circle btn-sm"
                                            title="Ban this Customer">
                                             <i class="las la-user"></i>
                                         </a>
