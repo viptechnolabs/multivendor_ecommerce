@@ -15,19 +15,19 @@
                             <input type="hidden" name="_token" value="W6cRTUoVwNgnY88ytfzkMZXKPCvEjMGojV33To95">                    <div class="form-group row">
                                 <label class="col-sm-3 col-from-label" for="name">Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="Name" name="name" value="admin" required="">
+                                    <input type="text" class="form-control" placeholder="Name" name="name" value="{{ $seller->user->name }}" required="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-from-label" for="name">Email</label>
+                                <label class="col-sm-3 col-from-label" for="email">Email</label>
                                 <div class="col-sm-9">
-                                    <input type="email" class="form-control" placeholder="Email" name="email" value="admin@example.com">
+                                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ $seller->user->email }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-from-label" for="new_password">New Password</label>
+                                <label class="col-sm-3 col-from-label" for="phone">New Password</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" placeholder="New Password" name="new_password">
+                                    <input type="password" class="form-control" placeholder="New Password" name="phone" value="{{ $seller->user->phone_no }}">
                                 </div>
                             </div>
                             <div class="form-group row">
