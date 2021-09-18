@@ -36,6 +36,7 @@ Route::middleware(['auth', 'checkUserStatus'])->group(function () {
     Route::post('seller_request_approved', [\App\Http\Controllers\seller\SellerController::class, 'sellerApproved'])->name('seller_request_approved');
     Route::get('seller_request_delete/{id}', [\App\Http\Controllers\seller\SellerController::class, 'sellerRequestDelete'])->name('seller_request_delete');
     Route::post('seller_update_status', [\App\Http\Controllers\seller\SellerController::class, 'updateSellerStatus'])->name('seller_update_status');
+    Route::get('seller_profile/{id}', [\App\Http\Controllers\seller\SellerController::class, 'sellerProfile'])->name('seller_profile');
 
 
     Route::get('category', [\App\Http\Controllers\category\CategoryController::class, 'index'])->name('category');
@@ -52,6 +53,7 @@ Route::middleware(['auth', 'checkUserStatus'])->group(function () {
 
 
     Route::get('activity_log', [\App\Http\Controllers\IndexController::class, 'activityLog'])->name('activity_log');
+    Route::get('activity_delete', [\App\Http\Controllers\IndexController::class, 'activityDelete'])->name('activity_delete');
 
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });

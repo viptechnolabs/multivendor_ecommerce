@@ -9,7 +9,7 @@
                     <div class="card text-left">
                         <div class="card-body">
                             <div class="mb-5 text-center">
-                                <img src="{{ asset('logo.png') }}" class="mw-100 mb-4" height="40">
+{{--                                <img src="{{ asset('logo.png') }}" class="mw-100 mb-4" height="40">--}}
                                 <h1 class="h3 text-primary mb-0">Welcome to{{ env('APP_NAME') }}</h1>
                                 <p>Login to your account.</p>
                             </div>
@@ -43,28 +43,28 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-sm-6">
-                                        <div class="text-left">
-                                            <label class="aiz-checkbox">
-                                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                <span>Remember Me</span>
-                                                <span class="aiz-square-check"></span>
-                                            </label>
-                                        </div>
+{{--                                        <div class="text-left">--}}
+{{--                                            <label class="aiz-checkbox">--}}
+{{--                                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
+{{--                                                <span>Remember Me</span>--}}
+{{--                                                <span class="aiz-square-check"></span>--}}
+{{--                                            </label>--}}
+{{--                                        </div>--}}
                                     </div>
-                                        <div class="col-sm-6">
-                                            <div class="text-right">
-                                                <a href="{{ route('forgetPassword') }}" class="text-reset fs-14">Forgot password ?</a>
-                                            </div>
-                                        </div>
+{{--                                        <div class="col-sm-6">--}}
+{{--                                            <div class="text-right">--}}
+{{--                                                <a href="{{ route('forgetPassword') }}" class="text-reset fs-14">Forgot password ?</a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">
                                     Login
                                 </button>
                             </form>
-                            <div class="text-center">
-                                <p class="text-muted mb-0">I don't have an account?</p>
-                                <a href="{{ route('register_page') }}">Sing up</a>
-                            </div>
+{{--                            <div class="text-center">--}}
+{{--                                <p class="text-muted mb-0">I don't have an account?</p>--}}
+{{--                                <a href="{{ route('register_page') }}">Sing up</a>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

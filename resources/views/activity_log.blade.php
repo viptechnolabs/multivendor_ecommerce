@@ -8,6 +8,11 @@
                     <div class="col-md-6">
                         <h1 class="h3">All Activities</h1>
                     </div>
+                    <div class="col-md-6 text-md-right">
+                        <a href="" class="btn btn-danger confirm-delete" data-href="">
+                            <span>Delete Activity</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -54,5 +59,17 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('modal')
+    @include('modals.delete_activity')
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        @if (session()->has('message'))
+        AIZ.plugins.notify('success', '{{ Session::get('message') }}');
+        @endif
+    </script>
 @endsection
 

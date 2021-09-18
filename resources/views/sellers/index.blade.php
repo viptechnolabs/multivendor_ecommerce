@@ -50,7 +50,7 @@
                                 <!--<th data-breakpoints="lg">#</th>-->
                                 <th data-breakpoints="lg">#</th>
                                 <th>Name</th>
-{{--                                <th data-breakpoints="lg">Phone</th>--}}
+                                {{--                                <th data-breakpoints="lg">Phone</th>--}}
                                 <th data-breakpoints="lg">Email Address</th>
                                 <th data-breakpoints="lg">Verification Info</th>
                                 <th data-breakpoints="lg">Status</th>
@@ -64,12 +64,13 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td> {{$seller->user->name}}</td>
-{{--                                    <td>{{$seller->user->phone}}</td>--}}
+                                    {{--                                    <td>{{$seller->user->phone}}</td>--}}
                                     <td>{{$seller->user->email}}</td>
                                     <td>
                                         {{--                                            @if ($seller->verification_info != null)--}}
                                         <a href="#">
-                                            <span class="badge badge-inline badge-{{ $seller->verification_status ? 'info' : 'danger' }}">{{ $seller->verification_status ? 'Verified' : 'Not verified' }}</span>
+                                            <span
+                                                class="badge badge-inline badge-{{ $seller->verification_status ? 'info' : 'danger' }}">{{ $seller->verification_status ? 'Verified' : 'Not verified' }}</span>
                                         </a>
 
                                     </td>
@@ -86,15 +87,13 @@
                                     </td>
                                     <td>
 
-                                        <a href="" class="btn btn-soft-primary btn-icon btn-circle btn-sm" title="Log in as this Customer">
-                                            <i class="las la-edit"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-soft-info btn-icon btn-circle btn-sm" onclick="confirm_ban('https://demo.activeitzone.com/ecommerce/admin/customers_ban/5');" title="Ban this Customer">
+                                        <a href="{{ route('seller_profile', $seller->id) }}" class="btn btn-soft-info btn-icon btn-circle btn-sm"
+                                           title="Ban this Customer">
                                             <i class="las la-user"></i>
                                         </a>
-{{--                                        <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="https://demo.activeitzone.com/ecommerce/admin/customers/destroy/5" title="Delete">--}}
-{{--                                            <i class="las la-trash"></i>--}}
-{{--                                        </a>--}}
+                                        {{--                                        <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="https://demo.activeitzone.com/ecommerce/admin/customers/destroy/5" title="Delete">--}}
+                                        {{--                                            <i class="las la-trash"></i>--}}
+                                        {{--                                        </a>--}}
 
                                     </td>
                                 </tr>
@@ -212,11 +211,14 @@
             } else {
                 var status = 0;
             }
-            $.post('{{ route('seller_update_status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
-                if(data == 1){
+            $.post('{{ route('seller_update_status') }}', {
+                _token: '{{ csrf_token() }}',
+                id: el.value,
+                status: status
+            }, function (data) {
+                if (data == 1) {
                     AIZ.plugins.notify('success', 'Seller status updated successfully');
-                }
-                else{
+                } else {
                     AIZ.plugins.notify('danger', 'Something went wrong');
                 }
             });
@@ -226,15 +228,15 @@
             $('#sort_sellers').submit();
         }
 
-        function confirm_ban(url) {
-            $('#confirm-ban').modal('show', {backdrop: 'static'});
-            document.getElementById('confirmation').setAttribute('href', url);
-        }
+        // function confirm_ban(url) {
+        //     $('#confirm-ban').modal('show', {backdrop: 'static'});
+        //     document.getElementById('confirmation').setAttribute('href', url);
+        // }
 
-        function confirm_unban(url) {
-            $('#confirm-unban').modal('show', {backdrop: 'static'});
-            document.getElementById('confirmationunban').setAttribute('href', url);
-        }
+        // function confirm_unban(url) {
+        //     $('#confirm-unban').modal('show', {backdrop: 'static'});
+        //     document.getElementById('confirmationunban').setAttribute('href', url);
+        // }
 
         function bulk_delete() {
             var data = new FormData($('#sort_sellers')[0]);
@@ -255,6 +257,7 @@
                 }
             });
         }
+
         @if (session()->has('message'))
         AIZ.plugins.notify('success', '{{ Session::get('message') }}');
         @endif
