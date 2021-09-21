@@ -5,7 +5,7 @@
         <div class="profile">
             <div class="container">
                 <div class="row">
-                    <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 mx-auto">
+                    <div class="col-md-8 mx-auto">
                         <div class="card">
                             <div class="text-center pt-4">
                                 <h1 class="h4 fw-600">
@@ -14,85 +14,163 @@
                             </div>
                             <div class="px-4 py-3 py-lg-4">
                                 <div class="">
-                                    <form id="reg-form" class="form-default" role="form"
+                                    <form id="reg-form" class="" role="form"
                                           action="{{ route('register') }}" method="POST">
                                         @csrf
-                                        <div class="form-group">
-                                            <input type="text"
-                                                   class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                   value="{{ old('name') }}" placeholder="Full Name" name="name">
-                                            @if ($errors->has('name'))
-                                                <span class="invalid-feedback" role="alert">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <b>Personal Detail</b>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="name" class="form-label">Full Name <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text"
+                                                           class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                           value="{{ old('name') }}" placeholder="Full Name"
+                                                           name="name">
+                                                    @if ($errors->has('name'))
+                                                        <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('name') }}</strong>
                                                 </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input type="email"
-                                                   class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                   value="{{ old('email') }}" placeholder="Email" name="email">
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="email"
+                                                           class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                           value="{{ old('email') }}" placeholder="Email" name="email">
+                                                    @if ($errors->has('email'))
+                                                        <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('email') }}</strong>
                                                     </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input type="password"
-                                                   class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                   placeholder="Password" name="password">
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="password" class="form-label">Password<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="password"
+                                                           class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                           placeholder="Password" name="password">
+                                                    @if ($errors->has('password'))
+                                                        <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('password') }}</strong>
                                                 </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Confirm Password"
-                                                   name="password_confirmation">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea
-                                                   class="form-control{{ $errors->has('address') ? 'is-invalid' : '' }}"
-                                                   placeholder="Enter Address" name="address"></textarea>
-                                            @if ($errors->has('address'))
-                                                <span class="invalid-feedback" role="alert">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="password" class="form-label">Confirm Password<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="password"
+                                                           class="form-control{{ $errors->has('confirm_password') ? ' is-invalid' : '' }}"
+                                                           placeholder="Confirm Password" name="confirm_password">
+                                                    @if ($errors->has('confirm_password'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('confirm_password') }}</strong>
+                                                </span>
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Address<span
+                                                            class="text-danger">*</span></label>
+                                                    <textarea
+                                                        class="form-control{{ $errors->has('address') ? 'is-invalid' : '' }}"
+                                                        placeholder="Enter Address" name="address"></textarea>
+                                                    @if ($errors->has('address'))
+                                                        <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('address') }}</strong>
                                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <select name="city" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}">
-                                                <option value="">Select City</option>
-                                                @foreach(config('city.city') as $key=>$city)
-                                                    <option value="{{ $key }}">{{ $city }}</option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('city'))
-                                                <span class="invalid-feedback" role="alert">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="city" class="form-label">City<span
+                                                            class="text-danger">*</span></label>
+                                                    <select name="city"
+                                                            class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}">
+                                                        <option value="">Select City</option>
+                                                        @foreach(config('city.city') as $key=>$city)
+                                                            <option value="{{ $key }}">{{ $city }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @if ($errors->has('city'))
+                                                        <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('city') }}</strong>
                                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="phone"
-                                                   class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                                   placeholder="Enter Your Phone Number" name="password">
-                                            @if ($errors->has('phone'))
-                                                <span class="invalid-feedback" role="alert">
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="phone" class="form-label">Phone<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="phone"
+                                                           class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                                           placeholder="Enter Your Phone Number" name="password">
+                                                    @if ($errors->has('phone'))
+                                                        <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('phone') }}</strong>
                                                 </span>
-                                            @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div><div class="card">
+                                            <div class="card-header">
+                                                <b>Bank Detail</b>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="bank_name" class="form-label">Bank Name<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           value="{{ old('bank_name') }}" placeholder="AXIS/HDFC/SBI"
+                                                           name="bank_name">
+                                                    @if ($errors->has('bank_name'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('bank_name') }}</strong>
+                                                </span>
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="bank_acc_name" class="form-label">Bank Account Name<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text"
+                                                           class="form-control{{ $errors->has('bank_acc_name') ? ' is-invalid' : '' }}"
+                                                           value="{{ old('bank_acc_name') }}" placeholder="Saving/Current"
+                                                           name="bank_acc_name">
+                                                    @if ($errors->has('bank_acc_name'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('bank_acc_name') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="bank_acc_name" class="form-label">Bank Account Number<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text"
+                                                           class="form-control{{ $errors->has('bank_acc_no') ? ' is-invalid' : '' }}"
+                                                           value="{{ old('bank_acc_no') }}" placeholder="Enter Bank Account Number"
+                                                           name="bank_acc_name">
+                                                    @if ($errors->has('bank_acc_no'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('bank_acc_no') }}</strong>
+                                                    </span>
+                                                    @endif
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="bank_routing_no" class="form-label">Bank Routing Number<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text"
+                                                           class="form-control{{ $errors->has('bank_routing_no') ? ' is-invalid' : '' }}"
+                                                           placeholder="Bank Routing Number" name="bank_routing_no">
+                                                    @if ($errors->has('bank_routing_no'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('bank_routing_no') }}</strong>
+                                                </span>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="aiz-checkbox">
-                                                <input type="checkbox" name="checkbox_example_1" required>
-                                                <span class=opacity-60>By signing up you agree to our terms and conditions.</span>
-                                                <span class="aiz-square-check"></span>
-                                            </label>
-                                        </div>
+
 
                                         <div class="mb-5">
                                             <button type="submit" class="btn btn-primary btn-block fw-600">Create

@@ -33,7 +33,7 @@ class CustomerController extends Controller
         return ['message' => 'Invalid Email Or Password'];
     }
 
-    public function signup(Request $request): UserResource // TODO validation
+    public function signup(Request $request)
     {
         #param
         $email = $request->email;

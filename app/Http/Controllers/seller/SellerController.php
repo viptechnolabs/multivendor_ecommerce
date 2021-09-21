@@ -18,9 +18,14 @@ class SellerController extends Controller
         return view('sellers.index',['sellers'=>$sellers]);
     }
 
+    public function register(Request $request)
+    {
+
+    }
+
     public function sellerRequest(Request $request)
     {
-        $sellers = Seller::where('verification_status','==' , 0)->with('user')->paginate(10);
+        $sellers = Seller::where('verification_status', 0)->with('user')->paginate(10);
         return view('sellers.seller_request',['sellers'=>$sellers]);
     }
 

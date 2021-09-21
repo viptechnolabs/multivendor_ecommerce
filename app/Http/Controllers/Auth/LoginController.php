@@ -76,6 +76,11 @@ class LoginController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
         $address = $request->input('address');
+        $city = $request->input('city');
+        $bank_name = $request->input('bank_name');
+        $bank_acc_name = $request->input('bank_acc_name');
+        $bank_acc_no = $request->input('bank_acc_no');
+        $bank_routing_no = $request->input('bank_routing_no');
 
         $user = new User;
         $user->user_type = 'seller';
@@ -83,10 +88,15 @@ class LoginController extends Controller
         $user->email = $email;
         $user->password = Hash::make($password);
         $user->address = $address;
+        $user->city = $city;
         $user->save();
 
         $seller = new Seller;
         $seller->user_id = $user->id;
+        $seller->bank_name = $bank_name;
+        $seller->bank_acc_name = $bank_acc_name;
+        $seller->bank_acc_no = $bank_acc_no;
+        $seller->bank_routing_no = $bank_routing_no;
         $seller->save();
 
         activity('Seller register')

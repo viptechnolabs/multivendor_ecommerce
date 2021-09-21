@@ -24,10 +24,11 @@ class SellerSignupRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|min:6',
+            'full_name'=>'required',
             'email'=>'required|email',
             'address'=>'required',
-            'password'=>'required|min:6'
+            'password'=>'required|min:6',
+            'confirm_password'=>'required|min:6'
         ];
     }
 }
